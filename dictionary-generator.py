@@ -4,6 +4,7 @@ import DictionaryServices, re, operator, json
 
 start = "love"
 max_depth = 100
+max_word_len = 10
 min_word_len = 3
 
 visited = dict()
@@ -35,6 +36,6 @@ def visit(word, depth):
 
 visit(start, 1)
 
-words = dict((k, v) for k, v in visited.items() if v == 'noun' or v == 'adjective')
+words = dict((k, v) for k, v in visited.items() if (v == 'noun' or v == 'adjective') and len(k) <= max_word_len)
 
 print json.dumps(words, sort_keys=True)
